@@ -12,7 +12,7 @@ def create_app():
     
     # Create a navigation bar with links to all registered pages
     nav_links = [
-        dcc.Link(f"{page['name']} - {page['path']}", href=page["path"], style={'margin-right': '10px'})
+        dcc.Link(f"{page['name']}", href=page["path"], style={'margin-right': '10px'})
         for page in dash.page_registry.values()
         if page["module"] != "pages.not_found_404"
     ]
