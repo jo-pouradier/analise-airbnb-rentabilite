@@ -4,3 +4,4 @@
 *.prj
 *.shp
 *.shx
+!**/*process.csv
