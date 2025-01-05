@@ -40,10 +40,8 @@ geo_data2 = gpd.sjoin(geo_data2, gdf, how='left')
 
 avg_price1 = geo_data1.groupby('index_right')['price_per_m2'].mean().reset_index()
 avg_price1.columns = ['index_right', 'price_per_m2']
-print(avg_price1)
 avg_price1_basics = geo_data1.groupby('index_right')['price_per_m2_pondered'].mean().reset_index()
 avg_price1_basics.columns = ['index_right', 'price_per_m2_pondered']
-print(avg_price1_basics)
 # Calculate the average availability per neighborhood for listings
 avg_availability = geo_data1.groupby('index_right')['percentage_unavailable'].mean().reset_index()
 avg_availability.columns = ['index_right', 'avg_availability']
@@ -58,7 +56,6 @@ gdf_listings = gdf.merge(avg_price1, left_index=True, right_on='index_right', ho
 gdf_listings = gdf_listings.merge(avg_availability, left_index=True, right_on='index_right', how='left', suffixes=('', '_availability'))
 gdf_listings = gdf_listings.merge(avg_price1_basics, left_index=True, right_on='index_right', how='left', suffixes=('', '_price1_basics'))
 
-print(gdf_listings.head())
 gdf_loyer = gdf.merge(avg_price2, left_index=True, right_on='index_right', how='left')
 
 # Create the first map

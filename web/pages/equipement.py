@@ -2,11 +2,12 @@ import dash
 from dash import dcc, html
 import plotly.graph_objects as go
 import json
-
+import os
 dash.register_page(__name__, path="/equipement")
 
 # Les données JSON
-with open(r"C:\Users\Adrien\Cours\analise-airbnb-rentabilite\data\equipement_price.json") as file:
+data_path = os.path.join(os.path.dirname(__file__), '..','..', 'data', 'equipement_price.json')
+with open(data_path) as file:
     data = json.load(file)
 
 # Extraire les données

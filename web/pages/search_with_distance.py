@@ -11,7 +11,7 @@ import plotly.figure_factory as ff
 
 import dash_ag_grid as dag
 import numpy as np
-import web.pages.utils.location_search as location_search
+import pages.utils.location_search as location_search
 
 
 def apply_post_process(listings_search, loyer_search):
