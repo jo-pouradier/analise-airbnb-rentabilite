@@ -5,7 +5,7 @@ import geopandas as gpd
 import os
 import plotly.express as px
 
-dash.register_page(__name__, path="/map")
+# dash.register_page(__name__, path="/map")
 
 
 # Load shapefile data for Paris neighborhoods from the /data folder

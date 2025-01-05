@@ -4,7 +4,7 @@ import os
 
 
 def create_app():
-    app = Dash(__name__, use_pages=True)
+    app = Dash(__name__, use_pages=True,suppress_callback_exceptions=True)
     
     # Register all pages from the 'pages' folder
     pages_folder = os.path.join(os.path.dirname(__file__), 'pages')
@@ -14,7 +14,7 @@ def create_app():
     nav_links = [
         dcc.Link(f"{page['name']}", href=page["path"], className='nav-link')
         for page in dash.page_registry.values()
-        if page["module"] != "pages.not_found_404"
+        if page["module"] != "pages.not_found_404" and page["path"] != "/"
     ]
     
     app.layout = html.Div(

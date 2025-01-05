@@ -2,7 +2,7 @@ import dash
 from dash import html, dcc
 from .utils.create_boundaries_map import create_boundaries_map
 
-dash.register_page(__name__, path="/map2")
+# dash.register_page(__name__, path="/map2")
 
 fig = create_boundaries_map()
 
