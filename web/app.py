@@ -4,9 +4,7 @@ import os
 
 
 def create_app():
-    external_stylesheets = ['https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css']
-    app = Dash(__name__, use_pages=True
-               , external_stylesheets=external_stylesheets)
+    app = Dash(__name__, use_pages=True)
     
     # Register all pages from the 'pages' folder
     pages_folder = os.path.join(os.path.dirname(__file__), 'pages')
@@ -23,10 +21,9 @@ def create_app():
         [
             html.Div(
                 [
-                    html.H1("Big Data Project", style={'color': '#ffffff', 'margin': '0', 'padding': '0 20px', 'textAlign': 'center'},className='header-title'),
-                    html.Div(nav_links,style={'marginTop': '10px', 'textAlign': 'center'})
+                    html.H1("Big Data Project",className='header-title'),
+                    html.Div(nav_links)
                 ],
-                style={'backgroundColor': '#343a40', 'padding': '10px'},
                 className='navbar'
             ),
             html.Hr(),

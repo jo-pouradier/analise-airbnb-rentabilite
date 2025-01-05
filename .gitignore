@@ -6,3 +6,6 @@
 *.shx
 !**/*process.csv
 .venv
+/data/arrrondissements.zip
+/.idea
+**/__pycache__
