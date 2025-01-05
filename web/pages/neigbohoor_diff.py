@@ -12,11 +12,14 @@ dash.register_page(__name__, path="/map_arrondissements")
 
 
 # Load your first dataset with coordinates and prices
-data1 = pd.read_csv('D:/CPE/analise-airbnb-rentabilite/data/listings_process.csv')
+data_path = os.path.join(os.path.dirname(__file__), '..','..', 'data', 'pondered_listings_process.csv')
+# data1 = pd.read_csv('./../../data/pondered_listings_process.csv')
+data1 = pd.read_csv(data_path)
 data1 = data1.replace([np.inf, -np.inf], np.nan).dropna(subset=['price_per_m2', 'longitude', 'latitude'])
 
 # Load your second dataset with coordinates and prices
-data2 = pd.read_csv('D:/CPE/analise-airbnb-rentabilite/data/loyer_process.csv')
+data_path2 = os.path.join(os.path.dirname(__file__), '..','..', 'data', 'loyer_process.csv')
+data2 = pd.read_csv(data_path2)
 data2 = data2.replace([np.inf, -np.inf], np.nan).dropna(subset=['price_per_m2', 'geo_point_2d'])
 
 # Convert the coordinates to GeoDataFrames
@@ -28,37 +31,38 @@ geo_data2 = gpd.GeoDataFrame(data2, geometry=geometry2)
 
 
 # Load shapefile data for Paris neighborhoods from the /data folder
-shapefile_path = os.path.join(os.path.dirname(__file__), '..','..', 'data', 'arrondissements.shp')
-gdf = gpd.read_file("D:/CPE/analise-airbnb-rentabilite/data/arrondissements.shp")
+shapefile_path = os.path.join(os.path.dirname(__file__), '..','..', 'data','arrondissements', 'arrondissements.shp')
+gdf = gpd.read_file(shapefile_path)
+
 
 
 # Perform the spatial join to get the arrondissement for each point
 geo_data1 = gpd.sjoin(geo_data1, gdf, how='left')
 geo_data2 = gpd.sjoin(geo_data2, gdf, how='left')
 
+# Calculate the average weighted price per neighborhood for listings
 
-# Calculate the weighted average price per neighborhood for listings
-geo_data1['weighted_price'] = geo_data1['price_per_m2'] * (geo_data1['availability_365'] / 365)
-avg_price1 = geo_data1.groupby('index_right')['weighted_price'].mean().reset_index()
-avg_price1.columns = ['index_right', 'weighted_price']
+avg_price1 = geo_data1.groupby('index_right')['price_per_m2_pondered'].mean().reset_index()
+avg_price1.columns = ['index_right', 'price_per_m2_pondered']
 
 # Calculate the average availability per neighborhood for listings
-avg_availability = geo_data1.groupby('index_right')['availability_365'].mean().reset_index() / 365 * 100
+avg_availability = geo_data1.groupby('index_right')['percentage_unavailable'].mean().reset_index()
 avg_availability.columns = ['index_right', 'avg_availability']
 
-# Calculate the average price per neighborhood
+# Calculate the average price per neighborhood for loyer
 avg_price2 = geo_data2.groupby('index_right')['price_per_m2'].mean().reset_index()
+avg_price2.columns = ['index_right', 'price_per_m2']
 
-# Merge the average prices with the GeoDataFrame
+# Merge the average prices and availability with the GeoDataFrame
 gdf = gdf.merge(avg_price1, left_index=True, right_on='index_right', how='left')
 gdf = gdf.merge(avg_availability, left_index=True, right_on='index_right', how='left')
 gdf = gdf.merge(avg_price2, left_index=True, right_on='index_right', how='left', suffixes=('_listings', '_loyer'))
 
 # Create the first map
-fig1 = px.choropleth_mapbox(gdf, geojson=gdf.geometry, locations=gdf.index, color='weighted_price',
+fig1 = px.choropleth_mapbox(gdf, geojson=gdf.geometry, locations=gdf.index, color='price_per_m2_pondered',
                             mapbox_style="carto-positron", center={"lat": 48.8566, "lon": 2.3522}, zoom=11,
-                            opacity=0.5, hover_name='l_ar', labels={'weighted_price': 'Avg Price Listings'},
-                            hover_data={'avg_availability': ':.2f', 'index_right': False})
+                            opacity=0.5, hover_name='l_ar', labels={'price_per_m2_pondered': 'Avg Price Listings'},
+                            hover_data={'avg_availability': ':.2f', 'price_per_m2': ':.2f', 'index_right': False})
 
 # Create the second map
 fig2 = px.choropleth_mapbox(gdf, geojson=gdf.geometry, locations=gdf.index, color='price_per_m2',
@@ -91,14 +95,14 @@ def display_details(clickData_listings, clickData_loyer):
     if clickData_listings:
         point = clickData_listings['points'][0]
         neighborhood = point['hovertext']
+        weighted_price = point['customdata'][1]
         avg_price = point['z']
-        print(point.keys())
         avg_availability = point['customdata'][0]
         details.append(html.Div([
-            html.H3(f"Details for {neighborhood} (airbnb)"),
+            html.H3(f"Details for {neighborhood} (Airbnb)"),
             html.P(f"Average Price per m²: {avg_price:.2f}"),
-            html.P(f"Average Availability: {avg_availability:.2f}%")
-
+            html.P(f"Weighted Price per m²: {weighted_price:.2f}"),
+            html.P(f"Average Availability: {avg_availability*100:.2f}%")
         ], style={'width': '48%'}))
 
     if clickData_loyer:

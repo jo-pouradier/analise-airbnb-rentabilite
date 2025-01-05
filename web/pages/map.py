@@ -9,8 +9,8 @@ dash.register_page(__name__, path="/map")
 
 
 # Load shapefile data for Paris neighborhoods from the /data folder
-shapefile_path = os.path.join(os.path.dirname(__file__), '..','..', 'data', 'arrondissements.shp')
-gdf = gpd.read_file("D:/CPE/analise-airbnb-rentabilite/data/arrondissements.shp")
+shapefile_path = os.path.join(os.path.dirname(__file__), '..','..', 'data','arrondissements', 'arrondissements.shp')
+gdf = gpd.read_file(shapefile_path)
 
 
 # Create a Plotly Express map

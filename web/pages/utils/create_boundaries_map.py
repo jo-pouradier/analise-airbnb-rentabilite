@@ -1,7 +1,8 @@
 import geopandas as gpd
 import plotly.graph_objects as go
+import os
 
-def create_boundaries_map(path="D:/CPE/analise-airbnb-rentabilite/data/arrondissements.shp"):
+def create_boundaries_map(path=os.path.join(os.path.dirname(__file__), '..','..', 'data','arrondissements', 'arrondissements.shp')):
     """
     Create a Plotly map with the boundaries of Paris neighborhoods.
 
