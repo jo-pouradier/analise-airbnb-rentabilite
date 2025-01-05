@@ -6,3 +6,4 @@
 *.shx
 !**/*process.csv
 .venv
+**/__pycache__

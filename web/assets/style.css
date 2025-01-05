@@ -1,0 +1,66 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar {
+    background-color: #343a40;
+    padding: 10px;
+}
+
+.header-title {
+    color: #ffffff;
+    margin: 0;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.nav-links {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.nav-link {
+    color: #ffffff;
+    margin: 0 10px;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.nav-link:hover {
+    color: #d4d4d4;
+    text-decoration: underline;
+}
+
+.container {
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+
+.map-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.map {
+    height: 800px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+#map2-title {
+    color: #4CAF50;
+
+}
+
+.description {
+    text-align: center;
+    color: #555;
+    font-size: 16px;
+    margin-bottom: 30px;
+}
