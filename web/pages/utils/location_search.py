@@ -10,15 +10,10 @@ loyer_data = pd.read_csv(data_path2)
 loyer_data['latitude'] = loyer_data['geo_point_2d'].apply(lambda x: float(x.split(',')[0]))
 loyer_data['longitude'] = loyer_data['geo_point_2d'].apply(lambda x: float(x.split(',')[1]))
 
-print(listings_data.shape)
-print(loyer_data.shape)
-
 
 def location_search(lat, long, distance):
     """
     return all listings and loyer data within a certain distance from a given location
-    :param lat:
-    :param lon:
     :return:
     """
     lat_max_distance = (distance / 1000 / 111.32)
@@ -32,6 +27,3 @@ def location_search(lat, long, distance):
 
 if __name__ == '__main__':
     listings_search, loyer_search = location_search(48.8566, 2.3522, 100)
-
-    print(listings_search.shape)
-    print(loyer_search.shape)
