@@ -102,9 +102,9 @@ def display_details(clickData_listings, clickData_loyer):
         avg_availability = point['customdata'][0]
         details_listings.append(html.Div([
             html.H3(f"Details for {neighborhood} (Airbnb)"),
+            html.P(f"Occupancy rate: {avg_availability*100:.2f}%"),
             html.P(f"Average Price per m²: {avg_price:.2f}"),
-            html.P(f"Weighted Price per m²: {weighted_price:.2f}"),
-            html.P(f"Average Availability: {avg_availability*100:.2f}%")
+            html.P(f"Average Price per m² based on Occupancy: {weighted_price:.2f}")
         ]))
 
     if clickData_loyer:

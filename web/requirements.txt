@@ -3,3 +3,4 @@ pandas
 plotly
 geopandas
 scipy
+dash-ag-grid
