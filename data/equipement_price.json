@@ -1,0 +1,146 @@
+{
+    "Kitchen": {
+        "price_with": 92.6669143686,
+        "price_without": 75.597935588,
+        "count_with": 6661,
+        "count_without": 90
+    },
+    "Essentials": {
+        "price_with": 93.3950143842,
+        "price_without": 79.668181841,
+        "count_with": 6281,
+        "count_without": 470
+    },
+    "Washer": {
+        "price_with": 96.008572649,
+        "price_without": 87.2560324597,
+        "count_with": 3998,
+        "count_without": 2753
+    },
+    "Hair dryer": {
+        "price_with": 93.7798761283,
+        "price_without": 84.4018316414,
+        "count_with": 5786,
+        "count_without": 965
+    },
+    "Iron": {
+        "price_with": 94.033014055,
+        "price_without": 85.2071345856,
+        "count_with": 5532,
+        "count_without": 1219
+    },
+    "Shampoo": {
+        "price_with": 95.6257150834,
+        "price_without": 87.4837500131,
+        "count_with": 4109,
+        "count_without": 2642
+    },
+    "Carbon monoxide alarm": {
+        "price_with": 96.154540832,
+        "price_without": 90.788435923,
+        "count_with": 2077,
+        "count_without": 4674
+    },
+    "Smoke alarm": {
+        "price_with": 93.6341584652,
+        "price_without": 87.8685594757,
+        "count_with": 5352,
+        "count_without": 1399
+    },
+    "First aid kit": {
+        "price_with": 102.2027449785,
+        "price_without": 90.5243961944,
+        "count_with": 1107,
+        "count_without": 5644
+    },
+    "Bed linens": {
+        "price_with": 93.6348058639,
+        "price_without": 89.6631308762,
+        "count_with": 4719,
+        "count_without": 2032
+    },
+    "Extra pillows and blankets": {
+        "price_with": 93.5227502238,
+        "price_without": 91.7891745071,
+        "count_with": 2532,
+        "count_without": 4219
+    },
+    "Coffee maker": {
+        "price_with": 94.2899833375,
+        "price_without": 86.7998474269,
+        "count_with": 5083,
+        "count_without": 1668
+    },
+    "Refrigerator": {
+        "price_with": 94.0848848826,
+        "price_without": 86.9865289527,
+        "count_with": 5186,
+        "count_without": 1565
+    },
+    "Dishes and silverware": {
+        "price_with": 94.2238612286,
+        "price_without": 82.2959836625,
+        "count_with": 5741,
+        "count_without": 1010
+    },
+    "Cooking basics": {
+        "price_with": 94.1101342291,
+        "price_without": 84.2934367807,
+        "count_with": 5602,
+        "count_without": 1149
+    },
+    "Host greets you": {
+        "price_with": 97.5695735786,
+        "price_without": 90.1990563586,
+        "count_with": 2052,
+        "count_without": 4699
+    },
+    "Hot water": {
+        "price_with": 92.9444063374,
+        "price_without": 89.3249197433,
+        "count_with": 5809,
+        "count_without": 942
+    },
+    "Paid parking off premises": {
+        "price_with": 96.3076074121,
+        "price_without": 91.3960921165,
+        "count_with": 1434,
+        "count_without": 5317
+    },
+    "Patio or balcony": {
+        "price_with": 98.6877935286,
+        "price_without": 92.1355780425,
+        "count_with": 313,
+        "count_without": 6438
+    },
+    "Luggage dropoff allowed": {
+        "price_with": 99.3673253411,
+        "price_without": 90.4365094989,
+        "count_with": 1514,
+        "count_without": 5237
+    },
+    "BBQ grill": {
+        "price_with": 115.314073565,
+        "price_without": 92.2100670083,
+        "count_with": 67,
+        "count_without": 6684
+    },
+    "Air conditioning": {
+        "price_with": 98.1726923784,
+        "price_without": 91.9618908004,
+        "count_with": 519,
+        "count_without": 6232
+    },
+    "Bathtub": {
+        "price_with": 107.5049547829,
+        "price_without": 88.1945657707,
+        "count_with": 1484,
+        "count_without": 5267
+    },
+    "Coffee": {
+        "price_with": 94.6669725374,
+        "price_without": 84.8889486181,
+        "count_with": 5213,
+        "count_without": 1538
+    }
+}
