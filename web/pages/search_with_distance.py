@@ -127,10 +127,12 @@ def update_map(latitude, longitude, distance):
     fig_combined_ret.update_layout(transition_duration=500)
 
     details_listings = html.Div([
+        html.P(f"Number of AirBnBxxx: {len(listings_search)}"),
         html.P(f"Average Price per m²: {listings_search['price_per_m2'].mean():.2f}"),
     ])
 
     details_loyer = html.Div([
+        html.P(f"Number of loyer: {len(loyer_search)}"),
         html.P(f"Average Price per m²: {loyer_search['price_per_m2'].mean():.2f}"),
     ])
 
