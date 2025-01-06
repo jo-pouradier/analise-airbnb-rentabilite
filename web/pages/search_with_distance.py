@@ -9,13 +9,17 @@ import os
 import plotly.express as px
 import plotly.figure_factory as ff
 
+import dash_daq as daq
+
 import dash_ag_grid as dag
 import numpy as np
 import pages.utils.location_search as location_search
 
 
-def apply_post_process(listings_search, loyer_search):
+def apply_post_process(listings_search, loyer_search, use_occupation=False):
     mixed_dataset = listings_search[['latitude', 'longitude', 'price_per_m2']]
+    if use_occupation:
+        mixed_dataset['price_per_m2'] = listings_search['price_per_m2_pondered']
     mixed_dataset['rent_type'] = ['listings'] * listings_search.shape[0]
     loyer_data = loyer_search.copy()
     loyer_data['latitude'] = loyer_data['latitude'] + np.random.normal(0, 0.002, loyer_data.shape[0])
@@ -48,6 +52,13 @@ layout = html.Div([
         "**Please be aware that loyer latitude and longitude are randomly generated around the approximate location"),
     html.Br(),
     html.Br(),
+    html.Label("Utiliser les prix par m² rapporté au taux d'occupation"),
+    daq.BooleanSwitch(
+        id='occupation',
+        on=True,
+        color="#9B51E0",
+        style={'marginLeft': '10px'},
+    ),
     html.Br(),
     html.Label("Latitude"),
     dcc.Input(id="latitude", type="number", placeholder="", style={'marginRight': '10px'}),
@@ -88,17 +99,18 @@ layout = html.Div([
     dash.Output('details_loyer_2', 'children'),
     dash.Input('latitude', 'value'),
     dash.Input('longitude', 'value'),
-    dash.Input('distance', 'value')
+    dash.Input('distance', 'value'),
+    dash.Input('occupation', 'on')
 )
-def update_map(latitude, longitude, distance):
+def update_map(latitude, longitude, distance, occupation):
     if latitude is None or longitude is None or distance is None:
         return fig_combined, fig_listings, fig_loyer, [], []
     if latitude == '' or longitude == '' or distance == '':
         return fig_combined, fig_listings, fig_loyer, [], []
-    print("Updating map with new location: ", latitude, longitude, distance)
+    print("Updating map with new location: ", latitude, longitude, distance, occupation)
 
     listings_search, loyer_search = location_search.location_search(float(latitude), float(longitude), int(distance))
-    merged_dataset_tmp = apply_post_process(listings_search, loyer_search)
+    merged_dataset_tmp = apply_post_process(listings_search, loyer_search, occupation)
     fig_listings_ret = px.scatter_mapbox(merged_dataset_tmp.loc[merged_dataset_tmp['rent_type'] == "listings"],
                                          lat="latitude",
                                          lon="longitude",

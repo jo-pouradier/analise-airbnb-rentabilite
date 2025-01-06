@@ -4,3 +4,4 @@ plotly
 geopandas
 scipy
 dash-ag-grid
+dash-daq

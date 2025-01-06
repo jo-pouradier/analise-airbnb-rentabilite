@@ -27,6 +27,7 @@ def create_app():
                 className='navbar'
             ),
             html.Hr(),
+            html.H1("Welcome to the Paris Housing Market Dashboard"),
             dash.page_container,
         ]
     )
